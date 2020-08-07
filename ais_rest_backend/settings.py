@@ -25,7 +25,7 @@ SECRET_KEY = '!iom69xs+m&fw)=qwlbcfby5k$td6_^sbh+9=(b+n&sax&d$=1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.104','localhost']
 
 
 # Application definition
@@ -129,7 +129,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES' : ('rest_framework.permissions.IsAuthenticated',),
-#     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',)
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES' : ('rest_framework.permissions.IsAuthenticated',),
+    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',)
+}

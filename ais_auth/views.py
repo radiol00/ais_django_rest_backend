@@ -4,22 +4,21 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from .serializers import CustomUserSerializer
 from .models import CustomUser
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import AISTokenObtainPairSerializer
 # Create your views here.
 
 class RegistrationAPIView(CreateAPIView):
+    permission_classes = []
     model = CustomUser
     serializer_class = CustomUserSerializer
-    queryset = CustomUser.objects.all()
-    def get(self, request):
-        users = CustomUser.objects.all()
-        serializer = CustomUserSerializer(users, many=True)
-        return Response(serializer.data)
+    
+    def post(request):
+        print(request);
 
 
 
-    # def post(self, request):
-    #     serializer = CustomUserSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         return Response(serializer.data, status=201)
-    #     return Response(serializer.errors, status=400)
+class AISTokenObtainPairView(TokenObtainPairView):
+    serializer_class = AISTokenObtainPairSerializer;
+
         
