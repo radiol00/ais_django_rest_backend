@@ -15,10 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from ais_auth.views import UserViewSet
+from absence.views import UserAbsences
 
+router = DefaultRouter()
+router.register('', UserViewSet, basename='user')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('ais_auth.urls')),
     path('absence/', include('absence.urls')),
+    path('user/absence/', UserAbsences.as_view()),
+    path('user/', include(router.urls))
 ]

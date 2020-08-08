@@ -7,6 +7,7 @@ User = get_user_model()
 
 class CustomUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    
 
     def create(self, validated_data):
         user = CustomUser.objects.create(
@@ -16,14 +17,13 @@ class CustomUserSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
-
+    
     class Meta:
         model = User
-        fields = ['email', 'password']
+        fields = ['id', 'email', 'password', 'is_staff']
 
 
 class AISTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
         token['email'] = user.email;
