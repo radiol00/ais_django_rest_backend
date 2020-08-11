@@ -3,4 +3,8 @@ from .models import CustomUser
 # Register your models here.
 
 
-admin.site.register(CustomUser)
+class CustomUserAdmin(admin.ModelAdmin):
+    fields = ['is_staff', 'is_active']
+
+
+admin.site.register(CustomUser, CustomUserAdmin)
